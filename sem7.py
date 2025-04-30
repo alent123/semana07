@@ -1,8 +1,3 @@
-# ==========================================================
-# Lab 07 - Binary Trees
-# Algoritmos y Estructuras de Datos
-# Autor(es): [Nombre del integrante 1], [Nombre del integrante 2], [Nombre del integrante 3]
-# ==========================================================
 
 # ---------------------------
 # Challenge 1: Tree Height Calculation
