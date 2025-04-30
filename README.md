@@ -25,8 +25,8 @@ Cada integrante resolvió uno o más retos propuestos por el docente.
 Se incluyó en cada caso:
 
 - Prompt usado (simple y mejorado)
-- Código fuente en inglés
-- Explicación detallada
+- Código fuente 
+- Explicación 
 - Ejecución de ejemplos con salida esperada
 
 ---
@@ -43,7 +43,7 @@ Se incluyó en cada caso:
 
 ## 🛠️ Lenguaje utilizado
 
-- Python 3.x
+- Python
 
 ---
 
