@@ -1,4 +1,13 @@
+# ==========================================================
+# Lab 07 - Binary Trees
+# Algoritmos y Estructuras de Datos
+# Autor(es): [Nombre del integrante 1], [Nombre del integrante 2], [Nombre del integrante 3]
+# ==========================================================
+
+# ---------------------------
 # Challenge 1: Tree Height Calculation
+# ---------------------------
+
 class TreeNode:
     def __init__(self, value):
         self.value = value
@@ -6,43 +15,64 @@ class TreeNode:
         self.right = None
 
 def altura(root):
+    """
+    Calcula la altura de un árbol binario.
+    Retorna -1 si el árbol está vacío.
+    """
     if root is None:
         return -1
-    Izquierda = altura(root.left)
-    Derecha = altura(root.right)
-    return 1 + max(Izquierda, Derecha)
+    izquierda = altura(root.left)
+    derecha = altura(root.right)
+    return 1 + max(izquierda, derecha)
 
-# Test
-root = TreeNode(1)
-root.left = TreeNode(2)
-root.right = TreeNode(3)
-root.left.left = TreeNode(4)
-root.left.right = TreeNode(5)
-altura_arbol = altura(root)
-print("Altura del árbol:", altura_arbol)
+# Árbol de ejemplo
+root1 = TreeNode(1)
+root1.left = TreeNode(2)
+root1.right = TreeNode(3)
+root1.left.left = TreeNode(4)
+root1.left.right = TreeNode(5)
 
+print("\n--- Challenge 1 ---")
+print("Altura del árbol:", altura(root1))
+print("Árbol vacío:", altura(None))
+print("Árbol con un solo nodo:", altura(TreeNode(10)))
+
+# ---------------------------
 # Challenge 2: Count Leaf Nodes
+# ---------------------------
+
 class TreeNode:
     def __init__(self, value):
         self.value = value
         self.left = None
         self.right = None
 
-def ContarHojas(root):
+def contar_hojas(root):
+    """
+    Cuenta los nodos hoja en un árbol binario.
+    """
     if root is None:
         return 0
     if root.left is None and root.right is None:
         return 1
-    return ContarHojas(root.left) + ContarHojas(root.right)
+    return contar_hojas(root.left) + contar_hojas(root.right)
 
-root = TreeNode(1)
-root.left = TreeNode(2)
-root.right = TreeNode(3)
-root.left.left = TreeNode(4)
-root.left.right = TreeNode(5)
-print("Número de hojas:", ContarHojas(root))
+# Árbol de ejemplo
+root2 = TreeNode(1)
+root2.left = TreeNode(2)
+root2.right = TreeNode(3)
+root2.left.left = TreeNode(4)
+root2.left.right = TreeNode(5)
 
-# Challenge 3: Reflect a Binary Tree
+print("\n--- Challenge 2 ---")
+print("Número de hojas:", contar_hojas(root2))
+print("Árbol vacío:", contar_hojas(None))
+print("Árbol con un nodo:", contar_hojas(TreeNode(8)))
+
+# ---------------------------
+# Challenge 3: Tree Mirroring
+# ---------------------------
+
 class Nodo:
     def __init__(self, valor):
         self.valor = valor
@@ -50,49 +80,60 @@ class Nodo:
         self.derecho = None
 
 def reflejar(arbol):
+    """
+    Refleja (espeja) el árbol binario intercambiando los hijos.
+    """
     if arbol is None:
         return
-
-    # Intercambiar los hijos izquierdo y derecho
     arbol.izquierdo, arbol.derecho = arbol.derecho, arbol.izquierdo
-
-    # Aplicar recursivamente a los subárboles
     reflejar(arbol.izquierdo)
     reflejar(arbol.derecho)
 
-# Función auxiliar para imprimir el árbol en preorden
 def imprimir_preorden(nodo):
+    """
+    Imprime el árbol en preorden para visualizar el resultado.
+    """
     if nodo:
         print(nodo.valor, end=' ')
         imprimir_preorden(nodo.izquierdo)
         imprimir_preorden(nodo.derecho)
 
-# Ejemplo de uso
-raiz = Nodo(1)
-raiz.izquierdo = Nodo(2)
-raiz.derecho = Nodo(3)
-raiz.izquierdo.izquierdo = Nodo(4)
-raiz.izquierdo.derecho = Nodo(5)
+# Árbol original
+raiz3 = Nodo(1)
+raiz3.izquierdo = Nodo(2)
+raiz3.derecho = Nodo(3)
+raiz3.izquierdo.izquierdo = Nodo(4)
+raiz3.izquierdo.derecho = Nodo(5)
 
+print("\n--- Challenge 3 ---")
 print("Árbol original (preorden):")
-imprimir_preorden(raiz)
+imprimir_preorden(raiz3)
 
-reflejar(raiz)
+reflejar(raiz3)
 
 print("\nÁrbol reflejado (preorden):")
-imprimir_preorden(raiz)
+imprimir_preorden(raiz3)
+print()
 
+# ---------------------------
 # Challenge 4: Level Order Traversal
+# ---------------------------
+
 import queue
+
 class NodoArbol:
     def __init__(self, valor):
         self.valor = valor
         self.izquierdo = None
         self.derecho = None
 
-def recorrido(raiz):
+def recorrido_por_niveles(raiz):
+    """
+    Retorna una lista con los valores en recorrido por niveles (BFS).
+    """
     if raiz is None:
         return []
+    
     resultado = []
     cola = queue.Queue()
     cola.put(raiz)
@@ -107,16 +148,23 @@ def recorrido(raiz):
 
     return resultado
 
-# Crear el árbol
-raiz = NodoArbol(1)
-raiz.izquierdo = NodoArbol(2)
-raiz.derecho = NodoArbol(3)
-raiz.izquierdo.izquierdo = NodoArbol(4)
-raiz.izquierdo.derecho = NodoArbol(5)
-raiz.derecho.derecho = NodoArbol(6)
-print("Recorrido por niveles:", recorrido(raiz))
+# Árbol de ejemplo
+raiz4 = NodoArbol(1)
+raiz4.izquierdo = NodoArbol(2)
+raiz4.derecho = NodoArbol(3)
+raiz4.izquierdo.izquierdo = NodoArbol(4)
+raiz4.izquierdo.derecho = NodoArbol(5)
+raiz4.derecho.derecho = NodoArbol(6)
 
+print("\n--- Challenge 4 ---")
+print("Recorrido por niveles:", recorrido_por_niveles(raiz4))
+print("Árbol vacío:", recorrido_por_niveles(None))
+print("Árbol con un nodo:", recorrido_por_niveles(NodoArbol(99)))
+
+# ---------------------------
 # Challenge 5: Check if a Binary Tree is Balanced
+# ---------------------------
+
 class Nodo:
     def __init__(self, valor):
         self.valor = valor
@@ -124,6 +172,11 @@ class Nodo:
         self.der = None
 
 def es_balanceado(nodo):
+    """
+    Verifica si el árbol binario está balanceado.
+    Un árbol está balanceado si para cada nodo,
+    la diferencia de altura entre subárboles es como máximo 1.
+    """
     def revisar(raiz):
         if raiz is None:
             return 0, True
@@ -143,18 +196,20 @@ def es_balanceado(nodo):
     _, resultado = revisar(nodo)
     return resultado
 
-# Ejemplo: Árbol balanceado
-raiz1 = Nodo(1)
-raiz1.izq = Nodo(2)
-raiz1.der = Nodo(3)
-raiz1.izq.izq = Nodo(4)
-raiz1.izq.der = Nodo(5)
+# Árbol balanceado
+raiz5a = Nodo(1)
+raiz5a.izq = Nodo(2)
+raiz5a.der = Nodo(3)
+raiz5a.izq.izq = Nodo(4)
+raiz5a.izq.der = Nodo(5)
 
-# Ejemplo: Árbol no balanceado
-raiz2 = Nodo(1)
-raiz2.izq = Nodo(2)
-raiz2.izq.izq = Nodo(3)
-raiz2.izq.izq.izq = Nodo(4)
+# Árbol no balanceado
+raiz5b = Nodo(1)
+raiz5b.izq = Nodo(2)
+raiz5b.izq.izq = Nodo(3)
+raiz5b.izq.izq.izq = Nodo(4)
 
-print("¿Árbol 1 está balanceado?", es_balanceado(raiz1))  # True
-print("¿Árbol 2 está balanceado?", es_balanceado(raiz2))  # False
+print("\n--- Challenge 5 ---")
+print("¿Árbol 1 está balanceado?", es_balanceado(raiz5a))  # True
+print("¿Árbol 2 está balanceado?", es_balanceado(raiz5b))  # False
+print("Árbol vacío:", es_balanceado(None))  # True
